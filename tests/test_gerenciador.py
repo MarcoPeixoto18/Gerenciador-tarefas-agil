@@ -49,3 +49,10 @@ def test_atualizar_tarefa():
     tarefa = gerenciador.listar_tarefas()[0]
     assert tarefa["titulo"] == "Tarefa Nova"
     assert tarefa["prioridade"] == "Alta"
+
+def test_atualizar_tarefa_nao_encontrada():
+    gerenciador = GerenciadorTarefas()
+    try:
+        gerenciador.atualizar_tarefa("Inexistente", novo_titulo="Novo")
+    except ValueError as e:
+        assert str(e) == "Tarefa não encontrada."

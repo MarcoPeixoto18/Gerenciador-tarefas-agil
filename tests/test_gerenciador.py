@@ -6,6 +6,12 @@ def test_adicionar_tarefa():
     assert len(gerenciador.listar_tarefas()) == 1
     assert gerenciador.listar_tarefas()[0]["titulo"] == "Estudar Python"
     assert gerenciador.listar_tarefas()[0]["concluida"] is False
+    assert gerenciador.listar_tarefas()[0]["prioridade"] == "Média"
+
+def test_adicionar_tarefa_com_prioridade():
+    gerenciador = GerenciadorTarefas()
+    gerenciador.adicionar_tarefa("Projeto Urgente", "Alta")
+    assert gerenciador.listar_tarefas()[0]["prioridade"] == "Alta"
 
 def test_adicionar_tarefa_vazia():
     gerenciador = GerenciadorTarefas()
@@ -17,7 +23,6 @@ def test_adicionar_tarefa_vazia():
 def test_filtrar_por_status():
     gerenciador = GerenciadorTarefas()
     gerenciador.adicionar_tarefa("Tarefa 1")
-    # Simula marcar a primeira tarefa como concluída
     gerenciador.listar_tarefas()[0]["concluida"] = True
     
     pendentes = gerenciador.filtrar_por_status(False)

@@ -28,3 +28,17 @@ class GerenciadorTarefas:
                 self.tarefas.remove(tarefa)
                 return True
         raise ValueError("Tarefa não encontrada.")
+
+    def atualizar_tarefa(self, titulo_antigo, novo_titulo=None, nova_prioridade=None):
+        for tarefa in self.tarefas:
+            if tarefa["titulo"] == titulo_antigo:
+                if novo_titulo is not None:
+                    if not novo_titulo:
+                        raise ValueError("O título da tarefa não pode estar vazio.")
+                    tarefa["titulo"] = novo_titulo
+                if nova_prioridade is not None:
+                    if nova_prioridade not in ["Baixa", "Média", "Alta"]:
+                        raise ValueError("Prioridade inválida.")
+                    tarefa["prioridade"] = nova_prioridade
+                return True
+        raise ValueError("Tarefa não encontrada.")

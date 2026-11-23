@@ -39,3 +39,13 @@ def test_remover_tarefa():
     
     gerenciador.remover_tarefa("Tarefa para apagar")
     assert len(gerenciador.listar_tarefas()) == 0
+
+def test_atualizar_tarefa():
+    gerenciador = GerenciadorTarefas()
+    gerenciador.adicionar_tarefa("Tarefa Antiga", "Baixa")
+    
+    gerenciador.atualizar_tarefa("Tarefa Antiga", novo_titulo="Tarefa Nova", nova_prioridade="Alta")
+    
+    tarefa = gerenciador.listar_tarefas()[0]
+    assert tarefa["titulo"] == "Tarefa Nova"
+    assert tarefa["prioridade"] == "Alta"

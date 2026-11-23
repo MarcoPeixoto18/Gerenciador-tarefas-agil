@@ -31,3 +31,11 @@ def test_filtrar_por_status():
     assert len(pendentes) == 0
     assert len(concluidas) == 1
     assert concluidas[0]["titulo"] == "Tarefa 1"
+
+def test_remover_tarefa():
+    gerenciador = GerenciadorTarefas()
+    gerenciador.adicionar_tarefa("Tarefa para apagar")
+    assert len(gerenciador.listar_tarefas()) == 1
+    
+    gerenciador.remover_tarefa("Tarefa para apagar")
+    assert len(gerenciador.listar_tarefas()) == 0

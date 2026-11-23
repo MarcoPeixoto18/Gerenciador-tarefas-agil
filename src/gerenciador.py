@@ -21,3 +21,10 @@ class GerenciadorTarefas:
 
     def filtrar_por_status(self, concluida):
         return [t for t in self.tarefas if t["concluida"] == concluida]
+
+    def remover_tarefa(self, titulo):
+        for tarefa in self.tarefas:
+            if tarefa["titulo"] == titulo:
+                self.tarefas.remove(tarefa)
+                return True
+        raise ValueError("Tarefa não encontrada.")
